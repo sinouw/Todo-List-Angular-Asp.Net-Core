@@ -1,0 +1,29 @@
+<form #form="ngForm" (submit)="onSubmit(form)">
+    <!-- Title -->
+    <input type="hidden" name="PMId" [value]="service.formData.PMId">
+    <div class="form-group">
+
+        <input type="text" name="title" #title="ngModel" [(ngModel)]="service.formData.title" class="form-control col-md-7" placeholder="Title" maxlength="20" required>
+    </div>
+    <!-- Date  -->
+    <div class="form-group">
+        <input type="date" name="date" #optimalLine="ngModel" [(ngModel)]="service.formData.optimalLine" class="form-control col-md-7" placeholder="OptimalLine" required>
+    </div>
+    <!-- Completed -->
+    <div class="form-group">
+        <input name="completed" [disabled]="service.Disable" [(ngModel)]="service.formData.completed" (click)="checkedd()" type="checkbox" /> Completed
+        <!-- #completed="ngModel" [(ngModel)]="service.formData.completed" -->
+    </div>
+    <!-- Submit -->
+    <div *ngIf="service.Disable; then thenblock else elseBlock"></div>
+    <ng-template #elseBlock>
+        <button type="submit" class="btn btn-dark">Update</button> &nbsp;&nbsp;
+    </ng-template>
+    <ng-template #thenblock>
+        <button type="submit" class="btn btn-dark">Submit</button> &nbsp;&nbsp;
+    </ng-template>
+
+
+    <button type="reset" class="btn btn-outline-secondary" (click)="Undo(form)">Undo</button>
+
+</form>
